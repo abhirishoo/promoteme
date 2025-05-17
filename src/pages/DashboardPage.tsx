@@ -3,6 +3,7 @@ import { LogOut, Search, ChevronDown } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 
 const DashboardPage = () => {
   const { user, logout } = useAuth();
@@ -37,7 +38,7 @@ const DashboardPage = () => {
       if (!videoId) throw new Error('Invalid video URL');
       
       // Fetch video details from YouTube API (simulated)
-      const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet,statistics,contentDetails&key=AIzaSyCFRiSa9vTqdKUCUmu3opWafj2wJzoTXuo`);
+      const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet,statistics,contentDetails&key=${API_KEY}`);
       const data = await response.json();
       
       setSelectedVideo({
